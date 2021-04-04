@@ -2,9 +2,9 @@
   <span class="visually-hidden">Loading...</span>
 </div>
   <ul class="list-group">
-    <li [class]="getAllBrandClass()" routerLink="/cars">Tüm Markalar</li>
+    <li [class]="getAllBrandClass()" routerLink="/car">Tüm Markalar</li>
     <li (click)="SetCurrentBrand(brand)"
-    routerLink="/cars/brand/{{brand.id}}"
+    routerLink="/car/brand/{{brand.id}}"
     *ngFor="let brand of brands" 
     [class]="getCurrentBrandClass(brand)" >{{brand.name}}</li>
   </ul>
