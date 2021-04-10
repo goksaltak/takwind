@@ -15,10 +15,11 @@
             <th>Model Yılı</th>
             <th>Günlük Ücreti</th>
             <th>Açıklama</th>
-            
         </tr>
     </thead>
-    <tr *ngFor="let car of cars">
+    <tr (click)="SetCurrentCarDetail(car)"
+    routerLink="/car/cardetails/{{car.id}}"
+    *ngFor="let car of cars">
         <td>{{car.id}}</td>
         <td>{{car.brandId}}</td>
         <td>{{car.brandName}}</td>
@@ -29,4 +30,34 @@
         <td>{{car.description}}</td>
     </tr>
 </table>
-
+<div class="row row-cols- row-cols-md-2 g-4">
+<div (click)="SetCurrentCarDetail(car)"
+routerLink="/car/cardetails/{{car.id}}" *ngFor="let car of cars"  class="card" style="width: fullwidth;">
+    <div class="card-body" >
+      <h4 class="card-title">{{car.brandName}} {{car.description}}</h4>
+      <p class="card-text">RentalCars ayrıcalığı ile kiralayın!</p>
+      <div class="card-body">
+          <div class="row">
+              <div class="col-sm-3">
+                  <h4 class="card-title " style="text-align: center;">Marka</h4>
+                  <p class="card-text"  style="text-align: center;" >{{car.brandName}} </p>
+              </div>
+              <div class="col-sm-3">
+                  <h4 class="card-title" style="text-align: center;">Model</h4>
+                  <p class="card-text"  style="text-align: center;" > {{car.description}}</p>
+              </div>
+              <div class="col-sm-3">
+                  <h4 class="card-title" style="text-align: center;">Model Yılı</h4>
+                  <p class="card-text"  style="text-align: center;" >{{car.modelYear}}</p>
+              </div>
+              <div class="col-sm-3">
+                  <h4 class="card-title " style="text-align: center;">Günlük Fiyat</h4>
+                  <p class="card-text"  style="text-align: center;" >{{car.dailyPrice}} </p>
+              </div>
+          </div>
+    </div>
+  </div>
+  <div class="d-grid gap-5">
+      <button class="btn btn-success" type="button">İncele</button>
+  </div>
+  </div>

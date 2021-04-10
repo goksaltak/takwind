@@ -2,7 +2,7 @@
     <span class="visually-hidden">Loading...</span>
   </div>
     <ul class="list-group">
-      <li [class]="getAllColorClass()" routerLink="/car">Tüm Renkler</li>
+      <li [class]="getAllColorClass()" routerLink="/car" (click)="removeCurrentColor()">Tüm Renkler</li>
       <li (click)="SetCurrentColor(color)"
       routerLink="car/color/{{color.id}}"
       *ngFor="let color of colors" 

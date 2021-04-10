@@ -2,7 +2,7 @@
   <span class="visually-hidden">Loading...</span>
 </div>
   <ul class="list-group">
-    <li [class]="getAllBrandClass()" routerLink="/car">Tüm Markalar</li>
+    <li [class]="getAllBrandClass()" routerLink="/car" (click)="removeCurrentBrand()" >Tüm Markalar</li>
     <li (click)="SetCurrentBrand(brand)"
     routerLink="/car/brand/{{brand.id}}"
     *ngFor="let brand of brands" 
@@ -10,3 +10,4 @@
   </ul>
 
   <h5 *ngIf="currentBrand">{{currentBrand.name}} seçtiniz</h5>
+
