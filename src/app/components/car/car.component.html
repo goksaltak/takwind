@@ -1,12 +1,19 @@
 <div *ngIf="dataLoaded==false" class="spinner-border text-success" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
+  <div class="mb-3">
+    <label for="filterText" class="form-label">Araç ara...</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Arama...">
+  </div>
+  <div *ngIf="filterText.length>2" class="alert alert-success">
+    {{filterText}} aranıyor...
+  </div>
 <tr>
     <h1>Araçlarımız   </h1>
 </tr>
 <div class="row row-cols-1 row-cols-md-2 g-4">
 <div (click)="SetCurrentCarDetail(car)"
-routerLink="/car/cardetails/{{car.id}}" *ngFor="let car of cars"  class="card" style="width: fullwidth;">
+routerLink="/car/cardetails/{{car.id}}" *ngFor="let car of cars |filterPipe:filterText"  class="card" style="width: fullwidth;">
 <div   style="width: fullwidth;">
     <img  src="{{imageUrl}}{{car.imagePath}}" class="card-img-top" alt="..."></div>
     <div class="card-body" >
@@ -16,7 +23,7 @@ routerLink="/car/cardetails/{{car.id}}" *ngFor="let car of cars"  class="card" s
           <div class="row">
               <div class="col-sm-3">
                   <h4 class="card-title " style="text-align: center;">Marka</h4>
-                  <p class="card-text"  style="text-align: center;" >{{car.brandName}} </p>
+                  <p class="card-text"  style="text-align: center;" >{{car.brandName |uppercase}}</p>
               </div>
               <div class="col-sm-3">
                 <h4 class="card-title" style="text-align: center;">Model Yılı</h4>
@@ -28,7 +35,11 @@ routerLink="/car/cardetails/{{car.id}}" *ngFor="let car of cars"  class="card" s
             </div>
               <div class="col-sm-3">
                   <h4 class="card-title " style="text-align: center;">Günlük Fiyat</h4>
-                  <p class="card-text"  style="text-align: center;" >{{car.dailyPrice}} </p>
+                  <p class="card-text"  style="text-align: center;" >{{car.dailyPrice |currency:"₺"}} </p>
+              </div>
+              <div class="col-sm-3">
+                <h4 class="card-title " style="text-align: center;">KDV'li Fiyat </h4>
+                <p class="card-text"  style="text-align: center;" >{{car.dailyPrice |vatAdded:18|currency:"₺"}} </p>
               </div>
           </div>
     </div>

@@ -4,6 +4,7 @@ import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImage';
 import { CarImagesService } from 'src/app/services/car-images.service';
 import { CarService } from 'src/app/services/car.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-car',
@@ -13,6 +14,7 @@ import { CarService } from 'src/app/services/car.service';
 export class CarComponent implements OnInit {
   cars:Car[]=[];
   currentCar:Car;
+  filterText="";
   carId: number;
   carImages:CarImage[]=[];
   imageUrl:string="https://localhost:44371"
