@@ -1,38 +1,14 @@
 <div *ngIf="dataLoaded==false" class="spinner-border text-success" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Araçlarımız   </th>
-        </tr>
-        <tr>
-            <th>Araba No</th>
-            <th>Marka No</th>
-            <th>Marka Adı</th>
-            <th>Renk No</th>
-            <th>Renk Adı</th>
-            <th>Model Yılı</th>
-            <th>Günlük Ücreti</th>
-            <th>Açıklama</th>
-        </tr>
-    </thead>
-    <tr (click)="SetCurrentCarDetail(car)"
-    routerLink="/car/cardetails/{{car.id}}"
-    *ngFor="let car of cars">
-        <td>{{car.id}}</td>
-        <td>{{car.brandId}}</td>
-        <td>{{car.brandName}}</td>
-        <td>{{car.colorId}}</td>
-        <td>{{car.colorName}}</td>
-        <td>{{car.modelYear}}</td>
-        <td>{{car.dailyPrice}}</td>
-        <td>{{car.description}}</td>
-    </tr>
-</table>
-<div class="row row-cols- row-cols-md-2 g-4">
+<tr>
+    <h1>Araçlarımız   </h1>
+</tr>
+<div class="row row-cols-1 row-cols-md-2 g-4">
 <div (click)="SetCurrentCarDetail(car)"
 routerLink="/car/cardetails/{{car.id}}" *ngFor="let car of cars"  class="card" style="width: fullwidth;">
+<div   style="width: fullwidth;">
+    <img  src="{{imageUrl}}{{car.imagePath}}" class="card-img-top" alt="..."></div>
     <div class="card-body" >
       <h4 class="card-title">{{car.brandName}} {{car.description}}</h4>
       <p class="card-text">RentalCars ayrıcalığı ile kiralayın!</p>
@@ -43,13 +19,13 @@ routerLink="/car/cardetails/{{car.id}}" *ngFor="let car of cars"  class="card" s
                   <p class="card-text"  style="text-align: center;" >{{car.brandName}} </p>
               </div>
               <div class="col-sm-3">
-                  <h4 class="card-title" style="text-align: center;">Model</h4>
-                  <p class="card-text"  style="text-align: center;" > {{car.description}}</p>
-              </div>
+                <h4 class="card-title" style="text-align: center;">Model Yılı</h4>
+                <p class="card-text"  style="text-align: center;" >{{car.modelYear}}</p>
+            </div>
               <div class="col-sm-3">
-                  <h4 class="card-title" style="text-align: center;">Model Yılı</h4>
-                  <p class="card-text"  style="text-align: center;" >{{car.modelYear}}</p>
-              </div>
+                <h4 class="card-title" style="text-align: center;">Araç Rengi</h4>
+                <p class="card-text"  style="text-align: center;" > {{car.colorName}}</p>
+            </div>
               <div class="col-sm-3">
                   <h4 class="card-title " style="text-align: center;">Günlük Fiyat</h4>
                   <p class="card-text"  style="text-align: center;" >{{car.dailyPrice}} </p>
