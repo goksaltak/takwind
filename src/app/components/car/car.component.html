@@ -2,12 +2,31 @@
     <span class="visually-hidden">Loading...</span>
   </div>
   <div class="mb-3">
-    <label for="filterText" class="form-label">Araç ara...</label>
-    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Arama...">
+    <label for="filterText" class="form-label"></label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Araç Ara...">
   </div>
   <div *ngIf="filterText.length>2" class="alert alert-success">
     {{filterText}} aranıyor...
   </div>
+  <div>
+    <div class="row my-3">
+      <div class="col md-3">
+  <select  class="form-select" >
+    <option selected>Marka Seçiniz</option>
+    <option value="1" *ngFor="let brand of brands">{{brand.name}}</option>
+  </select></div>
+  <div class="col md-3">
+  <select  class="form-select" >
+    <option selected>Renk Seçiniz</option>
+    <option value="1" *ngFor="let color of colors">{{color.name}}</option>
+  </select>
+</div>
+  <div class="col-lg">
+<div class="d-grid">
+  <button class="btn btn-success" type="button">Filtrele</button>
+  </div>
+</div>
+</div></div>
 <tr>
     <h1>Araçlarımız   </h1>
 </tr>

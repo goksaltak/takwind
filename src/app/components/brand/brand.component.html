@@ -1,11 +1,15 @@
 <div *ngIf="dataLoaded==false" class="spinner-border text-success" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
+<div class="mb-3">
+  <label for="filterBrandText" class="form-label"></label>
+  <input type="text" [(ngModel)]="filterBrandText" class="form-control" id="filterBrandText" placeholder="Markalarda Ara...">
+</div>
   <ul class="list-group">
     <li [class]="getAllBrandClass()" routerLink="/car" (click)="removeCurrentBrand()" >Tüm Markalar</li>
     <li (click)="SetCurrentBrand(brand)"
     routerLink="/car/brand/{{brand.id}}"
-    *ngFor="let brand of brands" 
+    *ngFor="let brand of brands |filterBrand:filterBrandText" 
     [class]="getCurrentBrandClass(brand)" >{{brand.name}}</li>
   </ul>
 
