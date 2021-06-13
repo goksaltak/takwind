@@ -11,29 +11,29 @@
   <div>
     <div class="row my-3">
       <div class="col md-3">
-  <select  class="form-select" >
-    <option selected>Marka Seçiniz</option>
-    <option value="1" *ngFor="let brand of brands">{{brand.name}}</option>
+  <select  class="form-select rounded-0"   [(ngModel)]="brandFilter"  [value]="brandFilter" >
+    <option value="0">Marka Seçiniz</option>
+    <option  *ngFor="let brand of brands" [value]="brand.id" [selected]="selectedBrand(brand.id)">{{brand.name}}</option>
   </select></div>
   <div class="col md-3">
-  <select  class="form-select" >
-    <option selected>Renk Seçiniz</option>
-    <option value="1" *ngFor="let color of colors">{{color.name}}</option>
+  <select  class="form-select rounded-0" [(ngModel)]="colorFilter" [value]="colorFilter" >
+    <option value="0">Renk Seçiniz</option>
+    <option *ngFor="let color of colors" [value]="color.id" [selected]="selectedColor(color.id)">{{color.name}}</option>
   </select>
 </div>
   <div class="col-lg">
 <div class="d-grid">
-  <button class="btn btn-success" type="button">Filtrele</button>
+  <button [disabled]="brandFilter == 0 || colorFilter == 0"  class="btn btn-success" routerLink="/car/{{ colorFilter }}/{{ brandFilter }}"  type="button">Filtrele</button>
   </div>
 </div>
 </div></div>
 <tr>
     <h1>Araçlarımız   </h1>
 </tr>
-<div class="row row-cols-1 row-cols-md-2 g-4">
+<div  class="row row-cols-1 row-cols-md-2 g-4">
 <div (click)="SetCurrentCarDetail(car)"
 routerLink="/car/cardetails/{{car.id}}" *ngFor="let car of cars |filterPipe:filterText"  class="card" style="width: fullwidth;">
-<div   style="width: fullwidth;">
+<div style="width: fullwidth;">
     <img  src="{{imageUrl}}{{car.imagePath}}" class="card-img-top" alt="..."></div>
     <div class="card-body" >
       <h4 class="card-title">{{car.brandName}} {{car.description}}</h4>
@@ -66,4 +66,7 @@ routerLink="/car/cardetails/{{car.id}}" *ngFor="let car of cars |filterPipe:filt
   <div class="d-grid gap-5">
       <button class="btn btn-success" type="button">İncele</button>
   </div>
+  
   </div>
+  
+ 
